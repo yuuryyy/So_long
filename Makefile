@@ -6,7 +6,7 @@
 #    By: ychagri <ychagri@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/09 23:23:35 by ychagri           #+#    #+#              #
-#    Updated: 2024/03/14 05:38:24 by ychagri          ###   ########.fr        #
+#    Updated: 2024/03/14 07:00:11 by ychagri          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,5 +52,10 @@ fclean:	clean
 	rm -rf $(NAME)
 
 re: fclean all
+
+push:	fclean
+	git add .
+	git commit -m "so_long updates"
+	git push
 
 .PHONY: clean fclean re lib

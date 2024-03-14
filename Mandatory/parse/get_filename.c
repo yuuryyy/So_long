@@ -6,7 +6,7 @@
 /*   By: ychagri <ychagri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 00:00:48 by ychagri           #+#    #+#             */
-/*   Updated: 2024/03/14 05:22:11 by ychagri          ###   ########.fr       */
+/*   Updated: 2024/03/14 06:53:34 by ychagri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,12 @@ char	*filename(char **av)
 		ft_putstr_fd("Error\nmalloc failed to allocate", 2);
 		exit (1);
 	}
-		
 	k = 0;
 	while (av[1][i] != ' ' && av[1][i])
 	{
 		str[k++] = av[1][i];
 		i++;
 	}
-	str[k] ='\0';
+	str[k] = '\0';
 	return (str);
 }

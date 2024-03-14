@@ -6,7 +6,7 @@
 /*   By: ychagri <ychagri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 21:41:17 by ychagri           #+#    #+#             */
-/*   Updated: 2024/03/14 04:21:00 by ychagri          ###   ########.fr       */
+/*   Updated: 2024/03/14 06:57:42 by ychagri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ static int	count_words(char *str, char c)
 int	check_extension(char **av, int ac)
 {
 	int	i;
-	
 
 	if (!av || !*av || !ac)
 		return (0);
@@ -43,12 +42,12 @@ int	check_extension(char **av, int ac)
 	while (av[1][i] == ' ')
 		i--;
 	i = i - 4;
-	if ((av[1][i] != ' ' && i > 0 )&& av[1][i + 1] == '.'
+	if ((av[1][i] != ' ' && i > 0) && av[1][i + 1] == '.'
 		&& av[1][i + 2] == 'b' && av[1][i + 3] == 'e' && av[1][i + 4] == 'r')
 		return (1);
 	else
 	{
 		ft_putstr_fd("Error\nInvalid filename!!\n", 2);
-		exit (1);	
+		exit (1);
 	}
 }

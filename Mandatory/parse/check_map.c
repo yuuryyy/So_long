@@ -6,7 +6,7 @@
 /*   By: ychagri <ychagri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 00:18:10 by ychagri           #+#    #+#             */
-/*   Updated: 2024/03/14 05:24:09 by ychagri          ###   ########.fr       */
+/*   Updated: 2024/03/14 06:56:53 by ychagri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,8 @@ char	**get_map(char *file)
 	char	*map;
 	char	*line;
 	char	**map2d;
-	
+
 	map = NULL;
-	
 	if (!file)
 		return (NULL);
 	fd = open(file, O_RDONLY);
@@ -63,9 +62,15 @@ int	rectangular_check(char **map)
 	return (1);
 }
 
+void	err_walls(char **map)
+{
+	ft_putstr_fd("Error\nMissing walls !!\n", 2);
+	free_array(map);
+	exit (1);
+}
+
 int	walls_check(char **map)
 {
-	char	**tmp;
 	int		k;
 	int		len;
 
@@ -73,30 +78,20 @@ int	walls_check(char **map)
 		return (0);
 	k = 0;
 	len = 0;
-	tmp = map;
-	while (tmp[len])
+	while (map[len])
 		len++;
-	len--;
-	while (tmp[0][k] && tmp[len][k])
+	while (map[0][k] && map[len - 1][k])
 	{
-		if (tmp[0][k] != '1' || tmp[len][k] != '1')
-		{
-			ft_putstr_fd("Error\nMissing walls !!\n", 2);
-			free_array(map);
-			exit (1);
-		}
+		if (map[0][k] != '1' || map[len - 1][k] != '1')
+			err_walls(map);
 		k++;
 	}
 	len = ft_strlen(map[0]) - 1;
 	k = 0;
-	while (tmp[k])
+	while (map[k])
 	{
-		if (tmp[k][0] != '1' || tmp[k][len] != '1')
-		{
-			ft_putstr_fd("Error\nMissing walls !!\n", 2);
-			free_array(map);
-			exit (1);
-		}
+		if (map[k][0] != '1' || map[k][len] != '1')
+			err_walls(map);
 		k++;
 	}
 	return (1);
