@@ -1,23 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   free_arr.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ychagri <ychagri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/09 23:46:30 by ychagri           #+#    #+#             */
-/*   Updated: 2024/03/14 05:44:40 by ychagri          ###   ########.fr       */
+/*   Created: 2024/03/14 04:32:44 by ychagri           #+#    #+#             */
+/*   Updated: 2024/03/14 04:58:15 by ychagri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Inc/so_long.h"
+#include "../Inc/so_long.h"
 
-void	f(){system("leaks so_long");}
-
-int	main(int ac, char **av)
+void	free_array(char **str)
 {
-	atexit(f);
-	if (ac == 1)
-		exit(0);
-	error_check(av, ac);
+	int	i;
+
+	i = 0;
+	if (!str || !*str)
+		return ;
+	while (str[i])
+	{
+		free(str[i]);
+		str[i] = NULL;
+		i++;
+	}
+	free(str);
 }

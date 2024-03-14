@@ -6,7 +6,7 @@
 /*   By: ychagri <ychagri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 01:51:44 by ychagri           #+#    #+#             */
-/*   Updated: 2024/03/13 06:21:21 by ychagri          ###   ########.fr       */
+/*   Updated: 2024/03/14 05:43:28 by ychagri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,17 @@ int	element_check(char **map, char c)
 int	data_check(char **map)
 {
 	if (!map || !*map)
-		return (0);
-	if (element_check(map, 'P') != 1 || element_check(map, 'E') != 1 ||  element_check(map, 'C') < 1)
-		return (0);
+	{
+		ft_putstr_fd("Error\n", 2);
+		exit (1);
+	}
+	if (element_check(map, 'P') != 1 || element_check(map, 'E') != 1
+		||  element_check(map, 'C') < 1)
+		{
+			ft_putstr_fd("Error\nInvalid number of a component!!\n", 2);
+			free_array(map);
+			exit (1);
+		}
 	return (1);
 }
 p_coords	*x_y(char **map)
@@ -52,7 +60,7 @@ p_coords	*x_y(char **map)
 
 	if (!map || !*map)
 		return (NULL);
-	player = malloc (sizeof(p_coords));
+	player = malloc (sizeof(p_coords *));
 	if (!player)
 		return (NULL);
 	i = 0;
@@ -81,7 +89,7 @@ p_coords	*mapsize(char **map)
 
 	if (!map || !*map)
 		return (NULL);
-	size = malloc (sizeof(p_coords));
+	size = malloc (sizeof(p_coords *));
 	if (!size)
 		return (NULL);
 	i = 0;
@@ -99,7 +107,8 @@ p_coords	*mapsize(char **map)
 
 void	path(char **map, p_coords *size,int x, int y)
 {
-	if (x < 0 || x >= size->x || y < 0 || y >= size->y || map[y][x] == '1')
+	if (x < 0 || x >= size->x || y < 0 || y >= size->y
+		|| map[y][x] == '1' || map[y][x] == 'x')
 		return ;
 	map[y][x] = 'x';
 	path(map, size, x - 1,y);
@@ -108,14 +117,36 @@ void	path(char **map, p_coords *size,int x, int y)
 	path(map, size, x,y + 1);
 }
 
+int	check_path(char **map)
+{
+	int	i;
+	int	k;
+	p_coords *size;
+	p_coords *player;
 
-//void  flood_fill(char **tab, t_point size, t_point begin)
-//{
-//	fill(tab, size, begin,tab[begin->y][begin.x]);
-//}
-
-
-//int	check_path(char **map)
-//{
 	
-//}
+	if (!map ||!*map)
+		exit (1);
+	size = mapsize(map);
+	player = x_y(map);
+	path(map, size, player->x, player->y);
+	i = 0;
+	while (map[i])
+	{
+		k = 0;
+		while (map[i][k])
+		{
+			if (map[i][k] != 'x' && map[i][k] != '1')
+			{
+				ft_putstr_fd("Error\nInvalid Path!!\n", 2);
+				free_array(map);
+				free(size);
+				free(player);
+				exit (1);
+			}
+			k++;
+		}
+		i++;
+	}
+	return (1);
+}

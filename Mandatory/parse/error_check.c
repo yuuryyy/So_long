@@ -1,23 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   error_check.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ychagri <ychagri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/09 23:46:30 by ychagri           #+#    #+#             */
-/*   Updated: 2024/03/14 05:44:40 by ychagri          ###   ########.fr       */
+/*   Created: 2024/03/14 04:17:26 by ychagri           #+#    #+#             */
+/*   Updated: 2024/03/14 05:44:23 by ychagri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Inc/so_long.h"
+#include "../Inc/so_long.h"
 
-void	f(){system("leaks so_long");}
-
-int	main(int ac, char **av)
+void	error_check(char **av, int ac)
 {
-	atexit(f);
-	if (ac == 1)
-		exit(0);
-	error_check(av, ac);
+	char	*file;
+	char	**map;
+	char	**tmp;
+
+	if (!av || !*av)
+		return ;
+	check_extension(av, ac);
+	file = filename(av);
+	map = get_map(file);
+	walls_check(map);
+	data_check(map);
+	check_chars(map);
+	tmp = map;
+	check_path(tmp);
 }

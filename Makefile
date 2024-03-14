@@ -6,7 +6,7 @@
 #    By: ychagri <ychagri@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/09 23:23:35 by ychagri           #+#    #+#              #
-#    Updated: 2024/03/13 06:11:30 by ychagri          ###   ########.fr        #
+#    Updated: 2024/03/14 05:38:24 by ychagri          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,8 @@ NAME	:= so_long
 
 CC		:= cc
 
-CFLAGS	:= -g -Wall -Wextra -Werror -fsanitize=address
+CFLAGS	:= -g -Wall -Wextra -Werror 
+#-fsanitize=address
 
 LIBRARY	:= lib/libft.a
 
@@ -26,6 +27,8 @@ SRCS	:= Mandatory/main.c \
 		   Mandatory/parse/check_map.c \
 		   Mandatory/parse/check_elements.c \
 		   Mandatory/parse/check_chars.c \
+		   Mandatory/parse/error_check.c \
+		   Mandatory/tools/free_arr.c
 		   
 OBGS	:= $(SRCS:.c=.o)
 

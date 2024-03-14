@@ -6,7 +6,7 @@
 /*   By: ychagri <ychagri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 21:41:17 by ychagri           #+#    #+#             */
-/*   Updated: 2024/03/11 23:54:23 by ychagri          ###   ########.fr       */
+/*   Updated: 2024/03/14 04:21:00 by ychagri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,5 +47,8 @@ int	check_extension(char **av, int ac)
 		&& av[1][i + 2] == 'b' && av[1][i + 3] == 'e' && av[1][i + 4] == 'r')
 		return (1);
 	else
-		return (0);	
+	{
+		ft_putstr_fd("Error\nInvalid filename!!\n", 2);
+		exit (1);	
+	}
 }

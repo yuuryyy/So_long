@@ -6,7 +6,7 @@
 /*   By: ychagri <ychagri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 21:41:37 by ychagri           #+#    #+#             */
-/*   Updated: 2024/03/13 06:11:54 by ychagri          ###   ########.fr       */
+/*   Updated: 2024/03/14 04:33:22 by ychagri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ typedef struct s_game
 
 
 int		check_extension(char **av, int ac);
+int	check_path(char **map);
 char	*filename(char **av);
 p_coords	*x_y(char **map);
 char	**get_map(char *file);
@@ -41,5 +42,7 @@ int	data_check(char **map);
 int	check_chars(char **map);
 p_coords	*mapsize(char **map);
 void	path(char **map, p_coords *size,int x, int y);
+void	error_check(char **av, int ac);
+void	free_array(char **str);
 
 #endif
