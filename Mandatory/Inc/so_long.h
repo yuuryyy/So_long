@@ -6,7 +6,7 @@
 /*   By: ychagri <ychagri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 21:41:37 by ychagri           #+#    #+#             */
-/*   Updated: 2024/03/14 06:41:00 by ychagri          ###   ########.fr       */
+/*   Updated: 2024/04/09 16:31:39 by ychagri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 # define SO_LONG_H
 
 # include "../../lib/Libft/libft.h"
+# include <mlx.h>
+
 
 typedef struct s_coords
 {
@@ -23,16 +25,17 @@ typedef struct s_coords
 
 typedef struct s_game
 {
+	void		*mlx;
 	char		**map;
-	t_coords	*map_size;
-	t_coords	*player;
+	t_coords	map_size;
+	t_coords	player;
 
 }		t_game;
 
-void		path(char **map, t_coords *size, int x, int y);
-void		error_check(char **av, int ac);
+void		path(char **map, t_coords size, int x, int y);
+void		error_check(char **av, int ac, t_game *game);
 void		free_array(char **str);
-void		check_path(char **map);
+void		check_path(char **tmp,char **map, t_coords , t_coords);
 
 int			check_extension(char **av, int ac);
 int			rectangular_check(char **map);
@@ -40,8 +43,9 @@ int			walls_check(char **map);
 int			data_check(char **map);
 int			check_chars(char **map);
 
-t_coords	*mapsize(char **map);
-t_coords	*x_y(char **map);
+//t_coords	*mapsize(char **map);
+t_coords	size_map(char **map);
+t_coords	x_y(char **map);
 
 char		*filename(char **av);
 char		**get_map(char *file);

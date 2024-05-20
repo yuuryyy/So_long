@@ -6,7 +6,7 @@
 #    By: ychagri <ychagri@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/09 23:23:35 by ychagri           #+#    #+#              #
-#    Updated: 2024/03/14 07:00:11 by ychagri          ###   ########.fr        #
+#    Updated: 2024/04/06 20:58:57 by ychagri          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME	:= so_long
 
 CC		:= cc
 
-CFLAGS	:= -g -Wall -Wextra -Werror 
+CFLAGS	:= -g  
 #-fsanitize=address
 
 LIBRARY	:= lib/libft.a
@@ -38,10 +38,10 @@ lib:
 	make -C lib
 
 $(NAME): $(OBGS) lib
-	$(CC) $(CFLAGS) $(LIBRARY) $(OBGS) -o $(NAME)
+	$(CC)  -lmlx -framework OpenGL -framework AppKit  $(CFLAGS) $(LIBRARY) $(OBGS) -o $(NAME)
 
-%.o: %.c	Mandatory/Inc/so_long.h
-		$(CC) $(CFLAGS) -c $< -o $@
+%.o: %.c Mandatory/Inc/so_long.h
+		$(CC) $(CFLAGS) -Imlx -c $< -o $@
 
 clean:
 	make clean -C lib

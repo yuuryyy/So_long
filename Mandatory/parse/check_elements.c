@@ -6,7 +6,7 @@
 /*   By: ychagri <ychagri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 01:51:44 by ychagri           #+#    #+#             */
-/*   Updated: 2024/03/14 06:59:02 by ychagri          ###   ########.fr       */
+/*   Updated: 2024/04/06 21:02:41 by ychagri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,56 +53,53 @@ int	data_check(char **map)
 	return (1);
 }
 
-t_coords	*x_y(char **map)
+t_coords	x_y(char **map)
 {
-	int			i;
-	int			k;
-	t_coords	*player;
+	t_coords	coords;
+	int			x;
+	int			y;
 
-	if (!map || !*map)
-		return (NULL);
-	player = malloc (sizeof(t_coords *));
-	if (!player)
-		return (NULL);
-	i = 0;
-	while (map[i])
+	coords.x = -1;
+	coords.y = -1;
+	y = 0;
+	while (map[y])
 	{
-		k = 0;
-		while (map[i][k])
+		x = 0;
+		while (map[y][x])
 		{
-			if (map[i][k] == 'P')
+			if (map[y][x] == 'P')
 			{
-				player->x = k;
-				player->y = i;
+				coords.x = x;
+				coords.y = y;
+				return (coords);
 			}
-			k++;
+			x++;
 		}
-		i++;
+		y++;
 	}
-	return (player);
+	return (coords);
 }
 
-void	free_path(char **map, t_coords *player, t_coords *size)
+void	free_path(char **map, char **tmp)
 {
 	ft_putstr_fd("Error\nInvalid Path!!\n", 2);
 	free_array(map);
-	free(size);
-	free(player);
+	free_array(tmp);
 	exit (1);
 }
 
-void	check_path(char **map)
+void	check_path(char **tmp,char **map,t_coords size,t_coords player)
 {
 	int			i;
 	int			k;
-	t_coords	*size;
-	t_coords	*player;
 
 	if (!map ||!*map)
-		exit (1);
-	size = mapsize(map);
-	player = x_y(map);
-	path(map, size, player->x, player->y);
+		return ;
+	path(map, size, player.x, player.y);
+	//printf("%d   %d\n", size.x, size.y);
+	//printf("%d   %d\n", player.x, player.y);
+	//printf("%s\n", map[1]);
+	//printf("%s\n", map[2]);
 	i = 0;
 	while (map[i])
 	{
@@ -110,9 +107,10 @@ void	check_path(char **map)
 		while (map[i][k])
 		{
 			if (map[i][k] != 'x' && map[i][k] != '1')
-				free_path(map, player, size);
+				free_path(map, tmp);
 			k++;
 		}
 		i++;
 	}
+	
 }

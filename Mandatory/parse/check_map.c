@@ -6,7 +6,7 @@
 /*   By: ychagri <ychagri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 00:18:10 by ychagri           #+#    #+#             */
-/*   Updated: 2024/03/14 06:56:53 by ychagri          ###   ########.fr       */
+/*   Updated: 2024/04/05 17:56:57 by ychagri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ char	**get_map(char *file)
 		map = ft_strjoin2(map, line);
 		free(line);
 	}
-	free (map);
 	map2d = ft_split(map, '\n');
+	free (map);
 	return (map2d);
 }
 
