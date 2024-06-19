@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_extension.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ychagri <ychagri@student.42.fr>            +#+  +:+       +#+        */
+/*   By: youssra <youssra@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 21:41:17 by ychagri           #+#    #+#             */
-/*   Updated: 2024/03/14 06:57:42 by ychagri          ###   ########.fr       */
+/*   Updated: 2024/06/19 04:13:32 by youssra          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	check_extension(char **av, int ac)
 	if (!av || !*av || !ac)
 		return (0);
 	if (ac > 2 || count_words(av[1], ' ') > 1 || count_words(av[1], ' ') == 0)
-		return (0);
+		return (ft_putstr_fd("\033[31mError: Invalid arguments !!\n\033[36mExample:\n\t./so_long <filename>.ber\n", 2), exit(1), 0);
 	i = ft_strlen(av[1]) - 1;
 	while (av[1][i] == ' ')
 		i--;
@@ -47,7 +47,7 @@ int	check_extension(char **av, int ac)
 		return (1);
 	else
 	{
-		ft_putstr_fd("Error\nInvalid filename!!\n", 2);
+		ft_putstr_fd("\033[31mError: Invalid filename!!\n\033[36mExample:\n\t./so_long <filename>.ber\n", 2);
 		exit (1);
 	}
 }

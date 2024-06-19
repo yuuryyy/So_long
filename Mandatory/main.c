@@ -6,7 +6,7 @@
 /*   By: youssra <youssra@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 23:46:30 by ychagri           #+#    #+#             */
-/*   Updated: 2024/06/19 00:59:07 by youssra          ###   ########.fr       */
+/*   Updated: 2024/06/19 17:21:16 by youssra          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ void	f(){system("leaks so_long");}
 	
 //}
 
-int	movement(int key, t_game *game)
-{
+// int	movement(int key, t_game *game)
+// {
 	//printf("key: %d\n", key);
 	//if (key == )
 	//	exit(0); // fucntion exits with a message and frees all of the game struct
@@ -42,8 +42,8 @@ int	movement(int key, t_game *game)
 	
 	//else if (key == 6)
 		
-	return (0);
-}
+// 	return (0);
+// }
 
 typedef struct s_so_long{
 	
@@ -58,9 +58,9 @@ typedef struct s_so_long{
 	void *out_exit;
 	void *player;
 }t_so_long;
-void	lunch_game(t_game game)
-{
-	t_so_long *vars;
+// void	lunch_game(t_game game)
+// {
+// 	t_so_long *vars;
 	
 	// mlx = mlx_init();
 	// win = mlx_new_window(mlx,game.map_size.x * 80, game.map_size.y * 80, "so_long");
@@ -101,15 +101,29 @@ void	lunch_game(t_game game)
 	// mlx loop hook // catch hooks 
 	// mlx_hook(win, 2, 0, movement, &game);
 	// mlx_loop(mlx);
-}
+// }
 int	main(int ac, char **av)
 {
 	t_game	game;
-	
-	//atexit(f);
+	// atexit(f);
 	if (ac == 1)
 		exit(0);
 	error_check(av, ac, &game);
-	lunch_game(game);
+	// error_check(av, ac, &game);
+	// lunch_game(game);
 	return (0);
 }
+
+// int main()
+// {
+// 	int fd = open("youssra", O_CREAT | O_RDWR, 0644);
+
+// 	char *line= get_next_line(fd);
+
+// 	while (line)
+// 	{
+// 		printf("%s", line);
+// 		free(line);
+// 		line= get_next_line(fd);
+// 	}
+// }

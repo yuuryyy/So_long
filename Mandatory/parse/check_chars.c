@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_chars.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ychagri <ychagri@student.42.fr>            +#+  +:+       +#+        */
+/*   By: youssra <youssra@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 02:07:35 by ychagri           #+#    #+#             */
-/*   Updated: 2024/04/06 20:48:08 by ychagri          ###   ########.fr       */
+/*   Updated: 2024/06/19 19:36:20 by youssra          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	check(char **map)
 
 	if (!map || !*map)
 	{
-		ft_putstr_fd("Error\n", 2);
+		ft_putstr_fd("\033[31mError\n", 2);
 		exit (1);
 	}
 	i = 0;
@@ -31,7 +31,7 @@ void	check(char **map)
 			if (map[i][k] != '1' && map[i][k] != '0'
 				&& map[i][k] != 'P' && map[i][k] != 'E' && map[i][k] != 'C')
 			{
-				ft_putstr_fd("Error\nInvalid Symbols!!\n", 2);
+				ft_putstr_fd("\033[31mError: Invalid Symbols!!\n", 2);
 				free_array(map);
 				exit (1);
 			}

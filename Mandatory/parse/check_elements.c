@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   check_elements.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ychagri <ychagri@student.42.fr>            +#+  +:+       +#+        */
+/*   By: youssra <youssra@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 01:51:44 by ychagri           #+#    #+#             */
-/*   Updated: 2024/04/06 21:02:41 by ychagri          ###   ########.fr       */
+/*   Updated: 2024/06/19 21:22:17 by youssra          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Inc/so_long.h"
 
-int	element_check(char **map, char c)
+int	element_check(char **map, char c, t_game *game)
 {
 	int	i;
 	int	k;
@@ -20,15 +20,20 @@ int	element_check(char **map, char c)
 
 	i = 0;
 	count = 0;
-	if (!map || !*map)
-		return (0);
 	while (map[i])
 	{
 		k = 0;
 		while (map[i][k])
 		{
 			if (map[i][k] == c)
+			{
+				if (c == 'P')
+				{
+					game->player.x = k;
+					game->player.y = i;
+				}
 				count++;
+			}
 			k++;
 		}
 		i++;
@@ -36,20 +41,18 @@ int	element_check(char **map, char c)
 	return (count);
 }
 
-int	data_check(char **map)
+int	data_check(t_game *game)
 {
-	if (!map || !*map)
-	{
-		ft_putstr_fd("Error\n", 2);
-		exit (1);
-	}
-	if (element_check(map, 'P') != 1 || element_check(map, 'E') != 1
-		|| element_check(map, 'C') < 1)
-	{
-		ft_putstr_fd("Error\nInvalid number of a component!!\n", 2);
-		free_array(map);
-		exit (1);
-	}
+	char **map;
+
+	map = game->map;
+	if (!map || !*map || !game)
+		return(ft_putstr_fd("Error\n", 2), exit (1), 0);
+	if (element_check(map, 'P', game) != 1 || element_check(map, 'E', game) != 1
+		|| element_check(map, 'C', game) < 1)
+		return(ft_putstr_fd("\033[31mError: Invalid number of a component!!\n", 2),
+			free_array(map),exit (1), 0);
+	game->colls = element_check(map, 'C', game);
 	return (1);
 }
 
@@ -82,35 +85,31 @@ t_coords	x_y(char **map)
 
 void	free_path(char **map, char **tmp)
 {
-	ft_putstr_fd("Error\nInvalid Path!!\n", 2);
+	ft_putstr_fd("\033[31mError: Invalid Path!!\n", 2);
 	free_array(map);
 	free_array(tmp);
 	exit (1);
 }
 
-void	check_path(char **tmp,char **map,t_coords size,t_coords player)
+void	check_path(t_game *game, char **tmp)
 {
 	int			i;
 	int			k;
 
-	if (!map ||!*map)
-		return ;
-	path(map, size, player.x, player.y);
-	//printf("%d   %d\n", size.x, size.y);
-	//printf("%d   %d\n", player.x, player.y);
-	//printf("%s\n", map[1]);
-	//printf("%s\n", map[2]);
+	if (!game ||!*tmp)
+		return (free_array(tmp), exit(1));
+	path(tmp, game->map_size, game->player.x, game->player.y);
 	i = 0;
-	while (map[i])
+	while (tmp[i])
 	{
 		k = 0;
-		while (map[i][k])
+		while (tmp[i][k])
 		{
-			if (map[i][k] != 'x' && map[i][k] != '1')
-				free_path(map, tmp);
+			if (tmp[i][k] != 'x' && tmp[i][k] != '1')
+				free_path(game->map, tmp);
 			k++;
 		}
 		i++;
 	}
-	
+	free_array(tmp);
 }

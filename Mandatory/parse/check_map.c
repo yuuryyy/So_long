@@ -3,14 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ychagri <ychagri@student.42.fr>            +#+  +:+       +#+        */
+/*   By: youssra <youssra@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 00:18:10 by ychagri           #+#    #+#             */
-/*   Updated: 2024/04/05 17:56:57 by ychagri          ###   ########.fr       */
+/*   Updated: 2024/06/19 19:07:57 by youssra          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Inc/so_long.h"
+
+int	check_newlines(char *map)
+{
+	int	i;
+
+	if (!map)
+		return (0);
+	i = 0;
+	while (map[i])
+	{
+		if ((map[i+ 1] && map[i] == '\n' && map[i + 1] == '\n') || (map[i] == '\n' && map[i + 1] == '\0'))
+			return (ft_putstr_fd("\033[31mError: extra new lines !!\n", 2),free(map), exit(1), 0);
+		i++;
+	}
+	return (1);
+}
 
 char	**get_map(char *file)
 {
@@ -23,11 +39,9 @@ char	**get_map(char *file)
 	if (!file)
 		return (NULL);
 	fd = open(file, O_RDONLY);
+	free(file);
 	if (fd == -1)
-	{
-		ft_putstr_fd("Error\nFile can't be opened!!\n", 2);
-		exit (1);
-	}
+		return (ft_putstr_fd("Error\nFile can't be opened!!\n", 2), exit (1), NULL);
 	while (1)
 	{
 		line = get_next_line(fd);
@@ -36,6 +50,7 @@ char	**get_map(char *file)
 		map = ft_strjoin2(map, line);
 		free(line);
 	}
+	check_newlines(map);
 	map2d = ft_split(map, '\n');
 	free (map);
 	return (map2d);
@@ -64,7 +79,7 @@ int	rectangular_check(char **map)
 
 void	err_walls(char **map)
 {
-	ft_putstr_fd("Error\nMissing walls !!\n", 2);
+	ft_putstr_fd("\033[31mError: Missing walls !!\n", 2);
 	free_array(map);
 	exit (1);
 }
