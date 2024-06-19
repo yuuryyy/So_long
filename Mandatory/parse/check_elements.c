@@ -6,7 +6,7 @@
 /*   By: youssra <youssra@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 01:51:44 by ychagri           #+#    #+#             */
-/*   Updated: 2024/06/19 21:22:17 by youssra          ###   ########.fr       */
+/*   Updated: 2024/06/19 21:27:15 by youssra          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int	data_check(t_game *game)
 
 	map = game->map;
 	if (!map || !*map || !game)
-		return(ft_putstr_fd("Error\n", 2), exit (1), 0);
+		return(ft_putstr_fd("\033[31mError\n", 2), exit (1), 0);
 	if (element_check(map, 'P', game) != 1 || element_check(map, 'E', game) != 1
 		|| element_check(map, 'C', game) < 1)
 		return(ft_putstr_fd("\033[31mError: Invalid number of a component!!\n", 2),

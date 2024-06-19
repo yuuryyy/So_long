@@ -6,7 +6,7 @@
 /*   By: youssra <youssra@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 02:07:35 by ychagri           #+#    #+#             */
-/*   Updated: 2024/06/19 19:36:20 by youssra          ###   ########.fr       */
+/*   Updated: 2024/06/19 21:26:59 by youssra          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int	check_chars(char **map)
 {
 	if (!map || !*map)
 	{
-		ft_putstr_fd("Error\n", 2);
+		ft_putstr_fd("\033[31mError\n", 2);
 		exit (1);
 	}
 	check(map);

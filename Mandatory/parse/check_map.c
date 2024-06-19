@@ -6,7 +6,7 @@
 /*   By: youssra <youssra@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 00:18:10 by ychagri           #+#    #+#             */
-/*   Updated: 2024/06/19 19:07:57 by youssra          ###   ########.fr       */
+/*   Updated: 2024/06/19 21:27:36 by youssra          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ char	**get_map(char *file)
 	fd = open(file, O_RDONLY);
 	free(file);
 	if (fd == -1)
-		return (ft_putstr_fd("Error\nFile can't be opened!!\n", 2), exit (1), NULL);
+		return (ft_putstr_fd("E\033[31mError: File can't be opened!!\n", 2), exit (1), NULL);
 	while (1)
 	{
 		line = get_next_line(fd);
@@ -69,7 +69,7 @@ int	rectangular_check(char **map)
 	{
 		if (ft_strlen(tmp[i]) != ft_strlen(tmp[i + 1]))
 		{
-			ft_putstr_fd("Error\nNon rectangular map!!\n", 2);
+			ft_putstr_fd("\033[31mError: Non rectangular map!!\n", 2);
 			exit (1);
 		}
 		i++;

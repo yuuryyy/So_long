@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_filename.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ychagri <ychagri@student.42.fr>            +#+  +:+       +#+        */
+/*   By: youssra <youssra@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 00:00:48 by ychagri           #+#    #+#             */
-/*   Updated: 2024/03/14 06:53:34 by ychagri          ###   ########.fr       */
+/*   Updated: 2024/06/19 21:28:11 by youssra          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ char	*filename(char **av)
 	str = malloc (k - i + 1);
 	if (!str)
 	{
-		ft_putstr_fd("Error\nmalloc failed to allocate", 2);
+		ft_putstr_fd("\033[31mError: malloc failed \n", 2);
 		exit (1);
 	}
 	k = 0;
