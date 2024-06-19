@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ychagri <ychagri@student.42.fr>            +#+  +:+       +#+        */
+/*   By: youssra <youssra@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 23:46:30 by ychagri           #+#    #+#             */
-/*   Updated: 2024/04/27 20:08:49 by ychagri          ###   ########.fr       */
+/*   Updated: 2024/06/19 00:59:07 by youssra          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,8 @@ void	lunch_game(t_game game)
 {
 	t_so_long *vars;
 	
-	mlx = mlx_init();
-	win = mlx_new_window(mlx,game.map_size.x * 80, game.map_size.y * 80, "so_long");
+	// mlx = mlx_init();
+	// win = mlx_new_window(mlx,game.map_size.x * 80, game.map_size.y * 80, "so_long");
 	//player = mlx_xpm_file_to_image(mlx, "textures/player.xpm", &k, &k);
 	//floor = mlx_xpm_file_to_image(mlx, "textures/floor.xpm", &k, &k);
 	//wall = mlx_xpm_file_to_image(mlx, "textures/wall.xpm", &k, &k);
@@ -99,8 +99,8 @@ void	lunch_game(t_game game)
 	//}
 	//mlx_loop();	// drawing 
 	// mlx loop hook // catch hooks 
-	mlx_hook(win, 2, 0, movement, &game);
-	mlx_loop(mlx);
+	// mlx_hook(win, 2, 0, movement, &game);
+	// mlx_loop(mlx);
 }
 int	main(int ac, char **av)
 {

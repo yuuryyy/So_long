@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ychagri <ychagri@student.42.fr>            +#+  +:+       +#+        */
+/*   By: youssra <youssra@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 21:41:37 by ychagri           #+#    #+#             */
-/*   Updated: 2024/04/09 16:31:39 by ychagri          ###   ########.fr       */
+/*   Updated: 2024/06/19 01:08:11 by youssra          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ typedef struct s_game
 void		path(char **map, t_coords size, int x, int y);
 void		error_check(char **av, int ac, t_game *game);
 void		free_array(char **str);
+void	*ft_free(char **split, int i);
 void		check_path(char **tmp,char **map, t_coords , t_coords);
 
 int			check_extension(char **av, int ac);
