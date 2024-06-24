@@ -6,7 +6,7 @@
 /*   By: youssra <youssra@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 02:07:35 by ychagri           #+#    #+#             */
-/*   Updated: 2024/06/19 21:26:59 by youssra          ###   ########.fr       */
+/*   Updated: 2024/06/22 14:58:23 by youssra          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	check(char **map)
 			if (map[i][k] != '1' && map[i][k] != '0'
 				&& map[i][k] != 'P' && map[i][k] != 'E' && map[i][k] != 'C')
 			{
-				ft_putstr_fd("\033[31mError: Invalid Symbols!!\n", 2);
+				ft_putstr_fd("\033[31mError\n\tInvalid Symbols!!\n", 2);
 				free_array(map);
 				exit (1);
 			}

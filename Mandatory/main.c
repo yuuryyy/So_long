@@ -6,7 +6,7 @@
 /*   By: youssra <youssra@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 23:46:30 by ychagri           #+#    #+#             */
-/*   Updated: 2024/06/19 17:21:16 by youssra          ###   ########.fr       */
+/*   Updated: 2024/06/22 14:50:12 by youssra          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,9 +105,7 @@ typedef struct s_so_long{
 int	main(int ac, char **av)
 {
 	t_game	game;
-	// atexit(f);
-	if (ac == 1)
-		exit(0);
+
 	error_check(av, ac, &game);
 	// error_check(av, ac, &game);
 	// lunch_game(game);

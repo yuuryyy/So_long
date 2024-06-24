@@ -6,7 +6,7 @@
 /*   By: youssra <youssra@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 01:51:44 by ychagri           #+#    #+#             */
-/*   Updated: 2024/06/19 21:27:15 by youssra          ###   ########.fr       */
+/*   Updated: 2024/06/22 15:04:58 by youssra          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,44 +43,17 @@ int	element_check(char **map, char c, t_game *game)
 
 int	data_check(t_game *game)
 {
-	char **map;
+	char	**map;
 
 	map = game->map;
 	if (!map || !*map || !game)
-		return(ft_putstr_fd("\033[31mError\n", 2), exit (1), 0);
+		return (ft_putstr_fd("\033[31mError\n", 2), exit (1), 0);
 	if (element_check(map, 'P', game) != 1 || element_check(map, 'E', game) != 1
 		|| element_check(map, 'C', game) < 1)
-		return(ft_putstr_fd("\033[31mError: Invalid number of a component!!\n", 2),
-			free_array(map),exit (1), 0);
+		return (ft_putstr_fd("\033[31mError\n\tInvalid number of a component!!\n",
+				2), free_array(map), exit (1), 0);
 	game->colls = element_check(map, 'C', game);
 	return (1);
-}
-
-t_coords	x_y(char **map)
-{
-	t_coords	coords;
-	int			x;
-	int			y;
-
-	coords.x = -1;
-	coords.y = -1;
-	y = 0;
-	while (map[y])
-	{
-		x = 0;
-		while (map[y][x])
-		{
-			if (map[y][x] == 'P')
-			{
-				coords.x = x;
-				coords.y = y;
-				return (coords);
-			}
-			x++;
-		}
-		y++;
-	}
-	return (coords);
 }
 
 void	free_path(char **map, char **tmp)

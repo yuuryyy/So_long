@@ -6,7 +6,7 @@
 /*   By: youssra <youssra@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 04:17:26 by ychagri           #+#    #+#             */
-/*   Updated: 2024/06/19 20:38:43 by youssra          ###   ########.fr       */
+/*   Updated: 2024/06/22 15:00:46 by youssra          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,8 @@ void	check_rec(t_game *game)
 	while (game->map[i])
 	{
 		if (ft_strlen(game->map[i]) != len)
-			return(free_array(game->map), ft_putstr_fd("\033[31mError: non rectangular map!\n", 2), exit(1));
+			return (ft_putstr_fd("\033[31mError\n\tnon rectangular map!\n", 2),
+				free_array(game->map), exit(1));
 		i++;
 	}
 	game->map_size.x = len;
@@ -53,18 +54,20 @@ void	check_rec(t_game *game)
 
 char	**tmp_map(t_game *game)
 {
-	int	y;
-	char **tmp;
+	int		y;
+	char	**tmp;
 
 	y = 0;
 	tmp = malloc ((game->map_size.y + 1) * sizeof(char *));
 	if (!tmp)
-		return (ft_putstr_fd("\033[31mError: malloc failed!", 2), exit(1), NULL);
+		return (ft_putstr_fd("\033[31mError\n\tmalloc failed!", 2),
+			exit(1), NULL);
 	while (game->map[y])
 	{
 		tmp[y] = malloc(game->map_size.x + 1);
 		if (!tmp[y])
-			return(ft_putstr_fd("\033[31mError: malloc failed!", 2), ft_free(tmp, y),
+			return (ft_putstr_fd("\033[31mError\n\t malloc failed!", 2),
+				ft_free(tmp, y),
 				free_array(game->map), exit(1), NULL);
 		tmp[y] = ft_strcpy(tmp[y], game->map[y]);
 		y++;
@@ -82,17 +85,10 @@ void	error_check(char **av, int ac, t_game *game)
 		return ;
 	check_extension(av, ac);
 	file = filename(av);
-	game->map = get_map(file);//here we get the map
-	check_rec(game);// here is the map size defined.
+	game->map = get_map(file);
 	walls_check(game->map);
 	check_chars(game->map);
-	data_check(game);//player coords && colls calcul
+	data_check(game);
 	tmp = tmp_map(game);
-	// printf("cisdicwi\n");
 	check_path(game, tmp);
-	// free_array(tmp);
-	// free(tmp);
-	// game->map = map;
-	// free_array(game->map);
-	// free(game->map);
 }
