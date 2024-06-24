@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youssra <youssra@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ychagri <ychagri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 19:08:16 by ychagri           #+#    #+#             */
-/*   Updated: 2024/06/19 21:30:14 by youssra          ###   ########.fr       */
+/*   Updated: 2024/06/24 16:39:41 by ychagri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,6 @@
 
 # include "../Get_next_line/get_next_line.h"
 # include "../Ft_printf/ft_printf.h"
-
-# define OPEN_MAX 1024
 
 typedef struct s_list
 {

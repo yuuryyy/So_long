@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: youssra <youssra@student.42.fr>            +#+  +:+       +#+         #
+#    By: ychagri <ychagri@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/09 23:23:35 by ychagri           #+#    #+#              #
-#    Updated: 2024/06/19 02:57:04 by youssra          ###   ########.fr        #
+#    Updated: 2024/06/24 16:35:18 by ychagri          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,12 +14,8 @@ NAME	:= so_long
 
 CC		:= cc
 
-CFLAGS	:= -g  -Wall -Wextra -Werror
+CFLAGS	:= -g  
 #-fsanitize=address
-
-MLX_FLAGS = -Lmlx  -L/usr/lib/X11 -lXext -lX11
-
-INCLUDES = -I/usr/include -Imlx
 
 LIBRARY	:= lib/libft.a
 
@@ -42,10 +38,10 @@ lib:
 	make -C lib
 
 $(NAME): $(OBGS) lib
-	$(CC)  $(CFLAGS) $(MLX_FLAGS) $(OBGS) $(LIBRARY)  -o $(NAME)
+	$(CC)  -lmlx -framework OpenGL -framework AppKit  $(CFLAGS) $(LIBRARY) $(OBGS) -o $(NAME)
 
 %.o: %.c Mandatory/Inc/so_long.h
-		$(CC) $(CFLAGS) -c -o $@ $< $(INCLUDES)
+		$(CC) $(CFLAGS) -Imlx -c $< -o $@
 
 clean:
 	make clean -C lib
