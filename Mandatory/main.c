@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youssra <youssra@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ychagri <ychagri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 23:46:30 by ychagri           #+#    #+#             */
-/*   Updated: 2024/06/22 14:50:12 by youssra          ###   ########.fr       */
+/*   Updated: 2024/06/24 16:46:17 by ychagri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,7 @@ int	main(int ac, char **av)
 {
 	t_game	game;
 
+	atexit(f);
 	error_check(av, ac, &game);
 	// error_check(av, ac, &game);
 	// lunch_game(game);
