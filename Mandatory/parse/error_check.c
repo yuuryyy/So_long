@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   error_check.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youssra <youssra@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ychagri <ychagri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 04:17:26 by ychagri           #+#    #+#             */
-/*   Updated: 2024/06/22 15:00:46 by youssra          ###   ########.fr       */
+/*   Updated: 2024/06/26 05:56:11 by ychagri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Inc/so_long.h"
-
+#include <stdio.h>
 char	*ft_strcpy(char *dest, char *src)
 {
 	int	i;
@@ -37,7 +37,7 @@ void	*ft_free(char **split, int i)
 void	check_rec(t_game *game)
 {
 	size_t	len;
-	int		i;
+	size_t	i;
 
 	len = ft_strlen(game->map[0]);
 	i = 1;
@@ -45,9 +45,11 @@ void	check_rec(t_game *game)
 	{
 		if (ft_strlen(game->map[i]) != len)
 			return (ft_putstr_fd("\033[31mError\n\tnon rectangular map!\n", 2),
-				free_array(game->map), exit(1));
+				 exit(1));
 		i++;
 	}
+	if (len > 32 || i > 17)
+		return (ft_putstr_fd("\033[31mError: map too large.\n", 2), exit (1));
 	game->map_size.x = len;
 	game->map_size.y = i;
 }
@@ -64,12 +66,12 @@ char	**tmp_map(t_game *game)
 			exit(1), NULL);
 	while (game->map[y])
 	{
-		tmp[y] = malloc(game->map_size.x + 1);
+		tmp[y] = malloc((game->map_size.x + 1) * sizeof(char));
 		if (!tmp[y])
 			return (ft_putstr_fd("\033[31mError\n\t malloc failed!", 2),
 				ft_free(tmp, y),
 				free_array(game->map), exit(1), NULL);
-		tmp[y] = ft_strcpy(tmp[y], game->map[y]);
+		ft_strcpy(tmp[y], game->map[y]);
 		y++;
 	}
 	tmp[y] = 0;
@@ -86,6 +88,7 @@ void	error_check(char **av, int ac, t_game *game)
 	check_extension(av, ac);
 	file = filename(av);
 	game->map = get_map(file);
+	check_rec(game);
 	walls_check(game->map);
 	check_chars(game->map);
 	data_check(game);

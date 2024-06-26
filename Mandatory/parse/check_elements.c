@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_elements.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youssra <youssra@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ychagri <ychagri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 01:51:44 by ychagri           #+#    #+#             */
-/*   Updated: 2024/06/22 15:04:58 by youssra          ###   ########.fr       */
+/*   Updated: 2024/06/24 18:08:02 by ychagri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ void	check_path(t_game *game, char **tmp)
 		k = 0;
 		while (tmp[i][k])
 		{
-			if (tmp[i][k] != 'x' && tmp[i][k] != '1')
+			if (tmp[i][k] != 'x' && tmp[i][k] != '1' && tmp[i][k] != '0')
 				free_path(game->map, tmp);
 			k++;
 		}

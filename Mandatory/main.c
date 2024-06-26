@@ -6,7 +6,7 @@
 /*   By: ychagri <ychagri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 23:46:30 by ychagri           #+#    #+#             */
-/*   Updated: 2024/06/24 16:46:17 by ychagri          ###   ########.fr       */
+/*   Updated: 2024/06/26 08:21:36 by ychagri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,71 +45,99 @@ void	f(){system("leaks so_long");}
 // 	return (0);
 // }
 
-typedef struct s_so_long{
-	
-	void	*mlx;
-	void	*win;
+void	*img(void *mlxptr, char *filename)
+{
 	int		k;
-	int		x;
+	void	*image;
+
+	image =  mlx_xpm_file_to_image(mlxptr, filename, &k, &k);
+	if (!image)
+		return (perror(filename), exit (1), NULL);
+	return (image);
+}
+
+void	*textures(t_textures	*textures, void	*mlxptr)
+{
+	textures->player = img(mlxptr, "textures/player.xpm");
+	if (!textures->player)
+		return (perror("textures/player.xpm"), NULL);	
+	textures->floor = img(mlxptr, "textures/floor.xpm");
+	if (!textures->floor)
+		return (perror("textures/floor.xpm"), NULL);
+	textures->frame = img(mlxptr, "textures/frames.xpm");
+	if (!textures->frame)
+		return (perror("textures/frames.xpm"), NULL);
+	textures->frame2 = img(mlxptr, "textures/frames2.xpm");
+	if (!textures->frame2)
+		return (perror("text/ures/frames2.xpm"), NULL);
+	textures->coll = img(mlxptr, "textures/colls.xpm");
+	if (!textures->coll)
+		return (perror("textures/colls.xpm"), NULL);
+	textures->out_exit = img(mlxptr, "textures/exit.xpm");
+	if (!textures->out_exit)
+		return (perror("textures/exit.xpm"), NULL);
+	textures->inter_wall = img(mlxptr, "textures/inter_walls.xpm");
+	if (!textures->inter_wall)
+		return (perror("textures/inter_walls.xpm"), NULL);
+	return ("success");
+}
+
+void	lunch_game(t_game game)
+{
 	int		y;
-	void *floor;
-	void *wall;
-	void *coll;
-	void *out_exit;
-	void *player;
-}t_so_long;
-// void	lunch_game(t_game game)
-// {
-// 	t_so_long *vars;
-	
-	// mlx = mlx_init();
-	// win = mlx_new_window(mlx,game.map_size.x * 80, game.map_size.y * 80, "so_long");
-	//player = mlx_xpm_file_to_image(mlx, "textures/player.xpm", &k, &k);
-	//floor = mlx_xpm_file_to_image(mlx, "textures/floor.xpm", &k, &k);
-	//wall = mlx_xpm_file_to_image(mlx, "textures/wall.xpm", &k, &k);
-	//coll = mlx_xpm_file_to_image(mlx, "textures/coll.xpm", &k, &k);
-	//out_exit = mlx_xpm_file_to_image(mlx, "textures/exit.xpm", &k, &k);
-	//game.map[game.player.y][game.player.x] = '0';
-	//y = 0;
-	//while (y < game.map_size.y)
-	//{
-	//	//ft_printf("%s\n", game.map[y]);
-	//	x = 0;
-	//	write(1,"\n",1);
-	//	while(x < game.map_size.x)
-	//	{
-	//		if (game.map[y][x] == '0')
-	//			write(1,"0",1);
-	//			//mlx_put_image_to_window(mlx, win, floor, x * 80, y * 80);
-	//		//else if (game.map[y][x] == 'P')
-	//		//	write(1,"P",1);
-	//			//mlx_put_image_to_window(mlx, win, player, x * 80, y * 80);
-	//		else if (game.map[y][x] == 'E')
-	//			write(1,"E",1);
-	//			//mlx_put_image_to_window(mlx, win, out_exit, x * 80, y * 80);
-	//		else if (game.map[y][x] == 'C')
-	//			write(1,"C",1);
-	//			//mlx_put_image_to_window(mlx, win, coll, x * 80, y * 80);
-	//		else if (game.map[y][x] == '1')
-	//			write(1,"1",1);
-	//			//mlx_put_image_to_window(mlx, win, wall, x * 80, y * 80);
-	//			x++;
-	//	}
-	//	y++;
-	//}
-	//mlx_loop();	// drawing 
-	// mlx loop hook // catch hooks 
+	int		x;
+
+	game.data.mlxptr = mlx_init();
+	if (!game.data.mlxptr)
+		return (perror ("mlx_init\n"), exit (1));
+	if (!textures(&game.textures, game.data.mlxptr))
+		exit (1);
+	game.data.winptr = mlx_new_window(game.data.mlxptr,80 * game.map_size.x, game.map_size.y * 80, "youssra_so_long");
+	if (!game.data.winptr)
+		exit(1);
+	// game.map[game.player.y][game.player.x] = '0';
+	y = 0;
+	while (y < game.map_size.y)
+	{
+fprintf(stderr, "sudhiosdhsdis");
+		x = 0;
+		while(x < game.map_size.x)
+		{
+			mlx_put_image_to_window(game.data.mlxptr,game.data.winptr,game.textures.floor, x * 80, y * 80);
+			if (game.map[y][x] == 'P')
+				mlx_put_image_to_window(game.data.mlxptr,game.data.winptr,game.textures.player, x * 80, y * 80);
+			else if (game.map[y][x] == 'E')
+				mlx_put_image_to_window(game.data.mlxptr,game.data.winptr,game.textures.out_exit, x * 80, y * 80);
+			else if (game.map[y][x] == 'C')
+				mlx_put_image_to_window(game.data.mlxptr,game.data.winptr,game.textures.coll, x * 80, y * 80);
+			else if (game.map[y][x] == '1')
+			{
+				if (y == 0 || x == 0 || x == game.map_size.x - 1 || y == game.map_size.y - 1)
+				{
+					if (x % 2 == 0)
+						mlx_put_image_to_window(game.data.mlxptr, game.data.winptr, game.textures.frame, x * 80, y * 80);
+					else
+						mlx_put_image_to_window(game.data.mlxptr, game.data.winptr, game.textures.frame2, x * 80, y * 80);
+				}
+				else
+					mlx_put_image_to_window(game.data.mlxptr, game.data.winptr, game.textures.frame, x * 80, y * 80);
+			}
+				x++;
+		}
+		y++;
+	}
+	mlx_loop(game.data.mlxptr);	// drawing 
 	// mlx_hook(win, 2, 0, movement, &game);
 	// mlx_loop(mlx);
-// }
+}
 int	main(int ac, char **av)
-{
+{	
 	t_game	game;
 
-	atexit(f);
+	// atexit(f);
+
 	error_check(av, ac, &game);
-	// error_check(av, ac, &game);
-	// lunch_game(game);
+	lunch_game(game);
 	return (0);
 }
 

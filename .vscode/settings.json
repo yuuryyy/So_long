@@ -16,7 +16,8 @@
 		"so_long.h": "c",
 		"libft.h": "c",
 		"printf.h": "c",
-		"numbers": "c"
+		"numbers": "c",
+		"chrono": "c"
 	},
 	"C_Cpp.errorSquiggles": "disabled"
 }

@@ -6,7 +6,7 @@
 #    By: ychagri <ychagri@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/09 23:23:35 by ychagri           #+#    #+#              #
-#    Updated: 2024/06/24 16:35:18 by ychagri          ###   ########.fr        #
+#    Updated: 2024/06/24 18:39:31 by ychagri          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME	:= so_long
 
 CC		:= cc
 
-CFLAGS	:= -g  
+CFLAGS	:= -g  -Wall -Wextra -Werror
 #-fsanitize=address
 
 LIBRARY	:= lib/libft.a
