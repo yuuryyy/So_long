@@ -6,7 +6,7 @@
 /*   By: ychagri <ychagri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 21:41:37 by ychagri           #+#    #+#             */
-/*   Updated: 2024/06/27 08:22:18 by ychagri          ###   ########.fr       */
+/*   Updated: 2024/06/27 11:14:14 by ychagri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,24 @@
 #include "../../lib/Libft/libft.h"
 #include <mlx.h>
 
+
+#define Exit_1 
+#define Exit_1 
+#define Exit_1 
+#define Exit_1 
+
 typedef struct s_coords
 {
 	int x;
 	int y;
 } t_coords;
+
+typedef	struct s_sprites
+{
+	void	*img;
+	void	*next;
+}	t_sprite;
+
 
 typedef struct s_textures
 {
@@ -33,6 +46,9 @@ typedef struct s_textures
 	void *coll;
 	void *out_exit;
 	void *player;
+	void	*cage;
+	// t_sprite *player;
+	// t_sprite	*exit;
 
 } t_textures;
 

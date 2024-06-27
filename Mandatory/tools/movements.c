@@ -6,7 +6,7 @@
 /*   By: ychagri <ychagri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 04:29:33 by ychagri           #+#    #+#             */
-/*   Updated: 2024/06/27 08:04:40 by ychagri          ###   ########.fr       */
+/*   Updated: 2024/06/27 11:20:17 by ychagri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,12 @@ int    rendering(t_game *game)
 		{
 			mlx_put_image_to_window(game->data.mlxptr,game->data.winptr,game->textures.floor, x * 80, y * 80);
 			if (game->map[y][x] == 'E')
-				mlx_put_image_to_window(game->data.mlxptr,game->data.winptr,game->textures.out_exit, x * 80, y * 80);
+            {
+                mlx_put_image_to_window(game->data.mlxptr,game->data.winptr,game->textures.out_exit, x * 80, y * 80);
+                if (game->colls > 0)
+                    mlx_put_image_to_window(game->data.mlxptr,game->data.winptr,game->textures.cage, x * 80, y * 80);
+            }
+				
 			else if (game->map[y][x] == 'C')
 				mlx_put_image_to_window(game->data.mlxptr,game->data.winptr,game->textures.coll, x * 80, y * 80);
 			else if (game->map[y][x] == '1')
