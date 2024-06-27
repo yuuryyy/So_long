@@ -6,7 +6,7 @@
 /*   By: ychagri <ychagri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 04:17:26 by ychagri           #+#    #+#             */
-/*   Updated: 2024/06/26 05:56:11 by ychagri          ###   ########.fr       */
+/*   Updated: 2024/06/27 04:36:41 by ychagri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,4 +94,5 @@ void	error_check(char **av, int ac, t_game *game)
 	data_check(game);
 	tmp = tmp_map(game);
 	check_path(game, tmp);
+	game->moves = 0;
 }

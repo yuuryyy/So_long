@@ -6,7 +6,7 @@
 /*   By: ychagri <ychagri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 23:46:30 by ychagri           #+#    #+#             */
-/*   Updated: 2024/06/26 08:21:36 by ychagri          ###   ########.fr       */
+/*   Updated: 2024/06/27 08:17:39 by ychagri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,28 +22,41 @@ void	f(){system("leaks so_long");}
 // #define namethem ./textures/player.xpm
 // #define namethem ./textures/player.xpm
 
-//typedef enum {
-	//W = 12,
-	
-//}
+typedef enum t_num{
+	W = 13,
+	UP = 126,
+	A = 0,
+	LEFT = 123,
+	S = 1,
+	DOWN = 125,
+	D = 2,
+	RIGHT = 124,
+	ESC = 53
+}	moves;
 
-// int	movement(int key, t_game *game)
-// {
-	//printf("key: %d\n", key);
-	//if (key == )
-	//	exit(0); // fucntion exits with a message and frees all of the game struct
-	//else if (key == 2)
-	
-	//else if (key == 3)
-	
-	//else if (key == 4)
-	
-	//else if (key == 5)
-	
-	//else if (key == 6)
-		
-// 	return (0);
-// }
+int	movement(int key, t_game *game)
+{
+	if (key == ESC)
+	{
+		mlx_destroy_window(game->data.mlxptr, game->data.winptr);
+		exit (0);
+	}
+	else if (key == UP || key == W)
+		move(game, game->player.x, game->player.y - 1);
+	else if (key == A || key == LEFT)
+		move(game, game->player.x - 1, game->player.y);
+	else if (key == S || key == DOWN)
+		move(game, game->player.x, game->player.y + 1);
+	else if (key == D || key == RIGHT)
+		move(game, game->player.x + 1, game->player.y);
+	return (0);
+}
+
+int	close_win(t_game *game)
+{
+	(void) game;
+	exit (0);
+}
 
 void	*img(void *mlxptr, char *filename)
 {
@@ -84,59 +97,28 @@ void	*textures(t_textures	*textures, void	*mlxptr)
 
 void	lunch_game(t_game game)
 {
-	int		y;
-	int		x;
-
-	game.data.mlxptr = mlx_init();
-	if (!game.data.mlxptr)
-		return (perror ("mlx_init\n"), exit (1));
-	if (!textures(&game.textures, game.data.mlxptr))
-		exit (1);
-	game.data.winptr = mlx_new_window(game.data.mlxptr,80 * game.map_size.x, game.map_size.y * 80, "youssra_so_long");
-	if (!game.data.winptr)
-		exit(1);
-	// game.map[game.player.y][game.player.x] = '0';
-	y = 0;
-	while (y < game.map_size.y)
-	{
-fprintf(stderr, "sudhiosdhsdis");
-		x = 0;
-		while(x < game.map_size.x)
-		{
-			mlx_put_image_to_window(game.data.mlxptr,game.data.winptr,game.textures.floor, x * 80, y * 80);
-			if (game.map[y][x] == 'P')
-				mlx_put_image_to_window(game.data.mlxptr,game.data.winptr,game.textures.player, x * 80, y * 80);
-			else if (game.map[y][x] == 'E')
-				mlx_put_image_to_window(game.data.mlxptr,game.data.winptr,game.textures.out_exit, x * 80, y * 80);
-			else if (game.map[y][x] == 'C')
-				mlx_put_image_to_window(game.data.mlxptr,game.data.winptr,game.textures.coll, x * 80, y * 80);
-			else if (game.map[y][x] == '1')
-			{
-				if (y == 0 || x == 0 || x == game.map_size.x - 1 || y == game.map_size.y - 1)
-				{
-					if (x % 2 == 0)
-						mlx_put_image_to_window(game.data.mlxptr, game.data.winptr, game.textures.frame, x * 80, y * 80);
-					else
-						mlx_put_image_to_window(game.data.mlxptr, game.data.winptr, game.textures.frame2, x * 80, y * 80);
-				}
-				else
-					mlx_put_image_to_window(game.data.mlxptr, game.data.winptr, game.textures.frame, x * 80, y * 80);
-			}
-				x++;
-		}
-		y++;
-	}
-	mlx_loop(game.data.mlxptr);	// drawing 
-	// mlx_hook(win, 2, 0, movement, &game);
-	// mlx_loop(mlx);
+	mlx_loop_hook(game.data.mlxptr, &rendering, &game);
+	mlx_hook(game.data.winptr, 2, 0, movement, &game);
+	mlx_hook(game.data.winptr, 17, 0, close_win, &game);
+	mlx_loop(game.data.mlxptr);
 }
 int	main(int ac, char **av)
 {	
 	t_game	game;
 
-	// atexit(f);
+	atexit(f);
 
 	error_check(av, ac, &game);
+	game.map[game.player.y][game.player.x] = '0';
+	game.data.mlxptr = mlx_init();
+	if (!game.data.mlxptr)
+		return (perror ("mlx_init\n"), 1);
+	if (!textures(&game.textures, game.data.mlxptr))
+		return 1;
+	game.map[game.player.y][game.player.x] = '0';
+	game.data.winptr = mlx_new_window(game.data.mlxptr,80 * game.map_size.x, game.map_size.y * 80, "youssra_so_long");
+	if (!game.data.winptr)
+		return 1;
 	lunch_game(game);
 	return (0);
 }

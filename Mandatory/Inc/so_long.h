@@ -6,7 +6,7 @@
 /*   By: ychagri <ychagri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 21:41:37 by ychagri           #+#    #+#             */
-/*   Updated: 2024/06/25 03:24:48 by ychagri          ###   ########.fr       */
+/*   Updated: 2024/06/27 08:22:18 by ychagri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,16 +51,20 @@ typedef struct s_game
 	t_coords map_size;
 	t_coords player;
 	int colls;
+	int	moves;
 
 	t_textures textures;
 
 } t_game;
 
-void path(char **map, t_coords size, int x, int y);
-void check_path(t_game *game, char **tmp);
-void error_check(char **av, int ac, t_game *game);
-void free_array(char **str);
-void *ft_free(char **split, int i);
+void 	path(char **map, t_coords size, int x, int y);
+void 	check_path(t_game *game, char **tmp);
+void 	error_check(char **av, int ac, t_game *game);
+void	move(t_game *game, int x, int y);
+void 	free_array(char **str);
+void	 *ft_free(char **split, int i);
+
+int   	 rendering(t_game *game);
 
 int check_extension(char **av, int ac);
 int rectangular_check(char **map);

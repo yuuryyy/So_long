@@ -6,7 +6,7 @@
 #    By: ychagri <ychagri@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/09 23:23:35 by ychagri           #+#    #+#              #
-#    Updated: 2024/06/24 18:39:31 by ychagri          ###   ########.fr        #
+#    Updated: 2024/06/27 04:51:49 by ychagri          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,8 +28,9 @@ SRCS	:= Mandatory/main.c \
 		   Mandatory/parse/check_elements.c \
 		   Mandatory/parse/check_chars.c \
 		   Mandatory/parse/error_check.c \
-		   Mandatory/tools/free_arr.c
-		   
+		   Mandatory/tools/free_arr.c \
+		   Mandatory/tools/movements.c \
+
 OBGS	:= $(SRCS:.c=.o)
 
 all:	$(NAME)
