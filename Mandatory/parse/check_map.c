@@ -6,27 +6,29 @@
 /*   By: ychagri <ychagri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 00:18:10 by ychagri           #+#    #+#             */
-/*   Updated: 2024/06/28 05:39:19 by ychagri          ###   ########.fr       */
+/*   Updated: 2024/06/28 08:13:29 by ychagri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Inc/so_long.h"
 
-int	check_newlines(char *map)
+int	check_newlines(char *map, int fd)
 {
 	int	i;
 
 	if (!map)
-		return (0);
+		return (ft_putstr_fd("\033[31mError\n\tNO MAP!!\n", 2),
+			free(map), close(fd), exit(1), 0);
 	i = 0;
 	while (map[i])
 	{
 		if ((map[i + 1] && map[i] == '\n' && map[i + 1] == '\n')
 			|| (map[i] == '\n' && map[i + 1] == '\0'))
 			return (ft_putstr_fd("\033[31mError\n\textra new lines !!\n", 2),
-				free(map), exit(1), 0);
+				free(map), close(fd), exit(1), 0);
 		i++;
 	}
+	close(fd);
 	return (1);
 }
 
@@ -53,7 +55,7 @@ char	**get_map(char *file)
 		map = ft_strjoin2(map, line);
 		free(line);
 	}
-	check_newlines(map);
+	check_newlines(map, fd);
 	map2d = ft_split(map, '\n');
 	free (map);
 	return (map2d);
