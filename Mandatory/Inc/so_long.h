@@ -6,7 +6,7 @@
 /*   By: ychagri <ychagri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 21:41:37 by ychagri           #+#    #+#             */
-/*   Updated: 2024/06/27 11:14:14 by ychagri          ###   ########.fr       */
+/*   Updated: 2024/06/28 04:35:10 by ychagri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,18 @@ typedef struct s_coords
 	int x;
 	int y;
 } t_coords;
+
+typedef enum t_moves{
+	W = 13,
+	UP = 126,
+	A = 0,
+	LEFT = 123,
+	S = 1,
+	DOWN = 125,
+	D = 2,
+	RIGHT = 124,
+	ESC = 53
+}	moves;
 
 typedef	struct s_sprites
 {
