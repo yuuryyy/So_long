@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youssra <youssra@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ychagri <ychagri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 00:18:10 by ychagri           #+#    #+#             */
-/*   Updated: 2024/06/22 15:00:18 by youssra          ###   ########.fr       */
+/*   Updated: 2024/06/28 05:39:19 by ychagri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ char	**get_map(char *file)
 	fd = open(file, O_RDONLY);
 	free(file);
 	if (fd == -1)
-		return (ft_putstr_fd("\033[31mError\n\tOpening file !!\n",2),
+		return (ft_putstr_fd("\033[31mError\n\tOpening file !!\n", 2),
 			exit (1), NULL);
 	while (1)
 	{

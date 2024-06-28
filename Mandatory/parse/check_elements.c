@@ -6,7 +6,7 @@
 /*   By: ychagri <ychagri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 01:51:44 by ychagri           #+#    #+#             */
-/*   Updated: 2024/06/24 18:08:02 by ychagri          ###   ########.fr       */
+/*   Updated: 2024/06/28 05:38:13 by ychagri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,8 @@ int	data_check(t_game *game)
 		return (ft_putstr_fd("\033[31mError\n", 2), exit (1), 0);
 	if (element_check(map, 'P', game) != 1 || element_check(map, 'E', game) != 1
 		|| element_check(map, 'C', game) < 1)
-		return (ft_putstr_fd("\033[31mError\n\tInvalid number of a component!!\n",
+		return (
+			ft_putstr_fd("\033[31mError\n\tInvalid number of a component!!\n",
 				2), free_array(map), exit (1), 0);
 	game->colls = element_check(map, 'C', game);
 	return (1);

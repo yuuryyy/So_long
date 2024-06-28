@@ -6,12 +6,13 @@
 /*   By: ychagri <ychagri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 04:17:26 by ychagri           #+#    #+#             */
-/*   Updated: 2024/06/27 04:36:41 by ychagri          ###   ########.fr       */
+/*   Updated: 2024/06/28 05:41:30 by ychagri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Inc/so_long.h"
 #include <stdio.h>
+
 char	*ft_strcpy(char *dest, char *src)
 {
 	int	i;
@@ -45,7 +46,7 @@ void	check_rec(t_game *game)
 	{
 		if (ft_strlen(game->map[i]) != len)
 			return (ft_putstr_fd("\033[31mError\n\tnon rectangular map!\n", 2),
-				 exit(1));
+				exit(1));
 		i++;
 	}
 	if (len > 32 || i > 17)
