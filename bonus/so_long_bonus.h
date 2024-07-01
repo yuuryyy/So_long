@@ -6,7 +6,7 @@
 /*   By: ychagri <ychagri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 09:10:27 by ychagri           #+#    #+#             */
-/*   Updated: 2024/06/28 12:27:44 by ychagri          ###   ########.fr       */
+/*   Updated: 2024/07/01 06:12:56 by ychagri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,16 @@
 # include <mlx.h>
 
 # define MOVES "textures/moves.xpm" 
+
+# define LEFT1 "textures/walk1.xpm" 
+# define LEFT2 "textures/walk2.xpm" 
+# define LEFT3 "textures/walk3.xpm" 
+# define LEFT4 "textures/walk4.xpm" 
+
+# define RIGHT1 "textures/right1.xpm" 
+# define RIGHT2 "textures/right2.xpm" 
+# define RIGHT3 "textures/right3.xpm" 
+# define RIGHT4 "textures/right4.xpm" 
 
 typedef struct s_coords
 {
@@ -59,7 +69,8 @@ typedef struct s_textures
 
 	void	*coll;
 	void	*out_exit;
-	void	**player;
+	t_list	*l_player;
+	t_list	*r_player;
 	void	*cage;
 }	t_textures;
 
@@ -74,7 +85,7 @@ typedef struct s_game
 	int			moves;
 }	t_game;
 
-void	init_textures(t_textures *textures, void *mlxptr);
+void	init_textures(t_textures *textures, void *mlxptr, t_game *game);
 void	path(char **map, t_coords size, int x, int y);
 void	error_check(char **av, int ac, t_game *game);
 void	check_path(t_game *game, char **tmp);

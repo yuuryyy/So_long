@@ -6,7 +6,7 @@
 /*   By: ychagri <ychagri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 09:06:39 by ychagri           #+#    #+#             */
-/*   Updated: 2024/06/28 13:35:04 by ychagri          ###   ########.fr       */
+/*   Updated: 2024/07/01 06:54:47 by ychagri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,13 +45,13 @@ int	main(int ac, char **av)
 	game.data.mlxptr = mlx_init();
 	if (!game.data.mlxptr)
 		return (perror ("mlx_init\n"), 1);
-	init_textures(&game.textures, game.data.mlxptr);
-	game.data.winptr = mlx_new_window(game.data.mlxptr, 80 * game.map_size.x,
-			game.map_size.y * 80, "youssra_so_long");
-	if (!game.data.winptr)
-		return (1);
-	mlx_loop_hook(game.data.mlxptr, rendering, &game);
-	mlx_hook(game.data.winptr, 2, 0, movement, &game);
-	mlx_hook(game.data.winptr, 17, 0, close_win, NULL);
-	mlx_loop(game.data.mlxptr);
+	init_textures(&game.textures, game.data.mlxptr, &game);
+	// game.data.winptr = mlx_new_window(game.data.mlxptr, 80 * game.map_size.x,
+	// 		game.map_size.y * 80, "youssra_so_long");
+	// if (!game.data.winptr)
+	// 	return (1);
+	// mlx_loop_hook(game.data.mlxptr, rendering, &game);
+	// mlx_hook(game.data.winptr, 2, 0, movement, &game);
+	// mlx_hook(game.data.winptr, 17, 0, close_win, NULL);
+	// mlx_loop(game.data.mlxptr);
 }
