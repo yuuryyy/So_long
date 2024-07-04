@@ -6,7 +6,7 @@
 /*   By: ychagri <ychagri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 00:18:10 by ychagri           #+#    #+#             */
-/*   Updated: 2024/06/28 08:13:29 by ychagri          ###   ########.fr       */
+/*   Updated: 2024/07/04 15:58:36 by ychagri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	check_newlines(char *map, int fd)
 	while (map[i])
 	{
 		if ((map[i + 1] && map[i] == '\n' && map[i + 1] == '\n')
-			|| (map[i] == '\n' && map[i + 1] == '\0'))
+			|| (map[i] == '\n' && map[i + 1] == '\0') || map[0] == '\n')
 			return (ft_putstr_fd("\033[31mError\n\textra new lines !!\n", 2),
 				free(map), close(fd), exit(1), 0);
 		i++;

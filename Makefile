@@ -6,7 +6,7 @@
 #    By: ychagri <ychagri@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/09 23:23:35 by ychagri           #+#    #+#              #
-#    Updated: 2024/07/04 14:54:58 by ychagri          ###   ########.fr        #
+#    Updated: 2024/07/04 16:02:12 by ychagri          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,15 +50,15 @@ OBGS_B	:= $(SRCS_B:.c=.o)
 all:	$(NAME)
 
 lib:
-	make -C lib
+	@make -C lib
 
 $(NAME): $(OBGS) $(OBGS_G) lib
-	$(CC)  -lmlx -framework OpenGL -framework AppKit  $(CFLAGS) $(LIBRARY) $(OBGS) $(OBGS_G) -o $(NAME)
+	@$(CC)  -lmlx -framework OpenGL -framework AppKit  $(CFLAGS) $(LIBRARY) $(OBGS) $(OBGS_G) -o $(NAME)
 
 bonus: $(NAME_B)
 
 $(NAME_B): $(OBGS_B)  $(OBGS_G) lib
-	$(CC) -lmlx -framework OpenGL -framework AppKit $(CFLAGS) $(LIBRARY) $(OBGS_B)  $(OBGS_G) -o $(NAME_B)
+	@$(CC) -lmlx -framework OpenGL -framework AppKit $(CFLAGS) $(LIBRARY) $(OBGS_B)  $(OBGS_G) -o $(NAME_B)
 
 %.o: %.c $(HEADERS_B) $(HEADERS)
 		$(CC) $(CFLAGS) -Imlx -c $< -o $@
