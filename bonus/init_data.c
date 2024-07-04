@@ -6,7 +6,7 @@
 /*   By: ychagri <ychagri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 09:40:05 by ychagri           #+#    #+#             */
-/*   Updated: 2024/07/04 13:16:39 by ychagri          ###   ########.fr       */
+/*   Updated: 2024/07/04 13:09:46 by ychagri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ void	calcul(t_textures *texture, t_game *game)
 		game->patrol = i > 5;
 		if (i == 9)
 			i = 0;
-	}   d
+	}
 }
 
 int	rendering(t_game *game)
