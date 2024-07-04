@@ -6,7 +6,7 @@
 /*   By: ychagri <ychagri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 09:40:05 by ychagri           #+#    #+#             */
-/*   Updated: 2024/07/04 13:09:46 by ychagri          ###   ########.fr       */
+/*   Updated: 2024/07/04 13:45:29 by ychagri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	init_textures(t_textures	*textures, void	*mlxptr, t_game *game)
 	char *str[13] = {P1,P2,P3,P4, P5,P6,P7,P8,P9,P10,P11,P12 ,NULL};
 	char	*coll[3] = {C1, C2, NULL};
 	char	*exitat[5] = {E1, E2, E3, E4, NULL};
-	char	*enemy[11] = {EN1,EN2,EN3,EN4, EN5,EN6,EN7,EN8,EN9, EN10, NULL};
+	char	*enemy[12] = {EN1,EN2,EN3,EN4, EN5,EN6,EN7,EN8,EN9, EN10,EN10, NULL};
 
 	fill_list(str, game, &textures->player);
 	fill_list(coll, game, &textures->coll);
@@ -153,8 +153,9 @@ void	move(t_game *game, int x, int y)
 		game->colls--;
 	game->player.y = y;
 	game->player.x = x;
-	game->map[y][x] = '0';
-	if (c == 'E')
+	if (c == 'C')
+		game->map[y][x] = '0';
+	else if (c == 'E')
 	{
 		ft_printf("\033[42m\t<<<YOU WIN!>>>\033[0m\n", game->moves);
 		mlx_destroy_window(game->data.mlxptr, game->data.winptr);
