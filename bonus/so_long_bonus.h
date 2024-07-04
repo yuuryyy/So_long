@@ -6,7 +6,7 @@
 /*   By: ychagri <ychagri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 09:10:27 by ychagri           #+#    #+#             */
-/*   Updated: 2024/07/04 15:12:07 by ychagri          ###   ########.fr       */
+/*   Updated: 2024/07/04 15:21:11 by ychagri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,6 @@ typedef struct s_game
 }	t_game;
 
 void	init_textures(t_textures *textures, void *mlxptr, t_game *game);
-void	init_textures(t_textures	*textures, void	*mlxptr, t_game *game);
 void	path(char **map, t_coords size, int x, int y);
 void	error_check(char **av, int ac, t_game *game);
 void	check_path(t_game *game, char **tmp);
