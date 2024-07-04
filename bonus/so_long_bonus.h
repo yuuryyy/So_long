@@ -6,7 +6,7 @@
 /*   By: ychagri <ychagri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 09:10:27 by ychagri           #+#    #+#             */
-/*   Updated: 2024/07/04 12:40:36 by ychagri          ###   ########.fr       */
+/*   Updated: 2024/07/04 15:12:07 by ychagri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@
 # define EN9 "textures/floor_b.xpm" 
 # define EN10 "textures/floor_b.xpm" 
 
-
 typedef struct s_coords
 {
 	int	x;
@@ -87,16 +86,14 @@ typedef struct s_data
 
 typedef struct s_textures
 {
-	void	*floor;
-
-	void	*frame;
-	void	*frame2;
-
-	t_list	*coll;
-	t_list	*out_exit;
-	t_list	*player;
-	t_list	*enemy;
-	void	*cage;
+	void			*floor;
+	void			*frame;
+	void			*frame2;
+	t_list			*coll;
+	t_list			*out_exit;
+	t_list			*player;
+	t_list			*enemy;
+	void			*cage;
 	unsigned int	frames;
 }	t_textures;
 
@@ -113,6 +110,7 @@ typedef struct s_game
 }	t_game;
 
 void	init_textures(t_textures *textures, void *mlxptr, t_game *game);
+void	init_textures(t_textures	*textures, void	*mlxptr, t_game *game);
 void	path(char **map, t_coords size, int x, int y);
 void	error_check(char **av, int ac, t_game *game);
 void	check_path(t_game *game, char **tmp);

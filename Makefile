@@ -6,7 +6,7 @@
 #    By: ychagri <ychagri@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/09 23:23:35 by ychagri           #+#    #+#              #
-#    Updated: 2024/06/28 13:25:23 by ychagri          ###   ########.fr        #
+#    Updated: 2024/07/04 14:54:58 by ychagri          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,6 +39,7 @@ SRCS_B	:= bonus/main.c \
 			bonus/init_data.c \
 			bonus/parse.c \
 			bonus/error.c \
+			bonus/rendering.c \
 
 OBGS_G	:= $(SRCS_G:.c=.o)
 

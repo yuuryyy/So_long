@@ -6,7 +6,7 @@
 /*   By: ychagri <ychagri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 09:06:39 by ychagri           #+#    #+#             */
-/*   Updated: 2024/07/04 13:02:06 by ychagri          ###   ########.fr       */
+/*   Updated: 2024/07/04 15:14:06 by ychagri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,21 +48,18 @@ void	tqmira(char	**map)
 		x = 0;
 		while (map[y][x])
 		{
-			if (map[y][x] == '0' && !(rand() % 23))
-					map[y][x] = 'e';
+			if (map[y][x] == '0' && !(rand() % 13))
+				map[y][x] = 'e';
 			x++;
 		}
 		y++;
 	}
 }
 
-void	f(){system("leaks so_long_b");}
-
 int	main(int ac, char **av)
 {
 	t_game	game;
 
-	atexit(f);
 	ft_bzero(&game, sizeof(game));
 	error_check(av, ac, &game);
 	tqmira(game.map);

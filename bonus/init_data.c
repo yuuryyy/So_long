@@ -6,7 +6,7 @@
 /*   By: ychagri <ychagri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 09:40:05 by ychagri           #+#    #+#             */
-/*   Updated: 2024/07/04 13:45:29 by ychagri          ###   ########.fr       */
+/*   Updated: 2024/07/04 15:02:52 by ychagri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,116 +23,74 @@ void	*protect_img(void *mlxptr, char *filename)
 	return (image);
 }
 
-void	fill_list(char **str,t_game *game, t_list **lst)
+void	fill_list(char **str, t_game *game, t_list **lst)
 {
-	int	i;
+	int		i;
 	t_list	*node;
 
 	i = 0;
 	while (str[i])
 	{
-		node = ft_lstnew(protect_img(game->data.mlxptr,str[i]));
-		ft_lstadd_back(lst,node );
+		node = ft_lstnew(protect_img(game->data.mlxptr, str[i]));
+		ft_lstadd_back(lst, node);
 		i++;
 	}
 	node->next = *lst;
 }
 
+void	load_ex_en(t_game *game)
+{
+	char	*exitat[5];
+	char	*enemy[12];
 
+	exitat[0] = E1;
+	exitat[1] = E2;
+	exitat[2] = E3;
+	exitat[3] = E4;
+	exitat[4] = NULL;
+	enemy[0] = EN1;
+	enemy[1] = EN2;
+	enemy[2] = EN3;
+	enemy[3] = EN4;
+	enemy[4] = EN5;
+	enemy[5] = EN6;
+	enemy[6] = EN7;
+	enemy[7] = EN8;
+	enemy[8] = EN9;
+	enemy[9] = EN10;
+	enemy[10] = EN10;
+	enemy[11] = NULL;
+	fill_list(exitat, game, &game->textures.out_exit);
+	fill_list(enemy, game, &game->textures.enemy);
+}
 
 void	init_textures(t_textures	*textures, void	*mlxptr, t_game *game)
 {
-	char *str[13] = {P1,P2,P3,P4, P5,P6,P7,P8,P9,P10,P11,P12 ,NULL};
-	char	*coll[3] = {C1, C2, NULL};
-	char	*exitat[5] = {E1, E2, E3, E4, NULL};
-	char	*enemy[12] = {EN1,EN2,EN3,EN4, EN5,EN6,EN7,EN8,EN9, EN10,EN10, NULL};
+	char	*str[13];
+	char	*coll[3];
 
+	str[0] = P1;
+	str[1] = P2;
+	str[2] = P3;
+	str[3] = P4;
+	str[4] = P5;
+	str[5] = P6;
+	str[6] = P7;
+	str[7] = P8;
+	str[8] = P9;
+	str[9] = P10;
+	str[10] = P11;
+	str[11] = P12;
+	str[12] = NULL;
+	coll[0] = C1;
+	coll[1] = C2;
+	coll[2] = NULL;
 	fill_list(str, game, &textures->player);
 	fill_list(coll, game, &textures->coll);
-	fill_list(exitat, game, &textures->out_exit);
-	fill_list(enemy, game, &textures->enemy);
+	load_ex_en(game);
 	textures->floor = protect_img(mlxptr, "textures/floor_b.xpm");
 	textures->frame = protect_img(mlxptr, "textures/wall1_b.xpm");
 	textures->frame2 = protect_img(mlxptr, "textures/wall2_b.xpm");
-}
-
-void	put_img(t_game *game, int x, int y)
-{
-	mlx_put_image_to_window(game->data.mlxptr, game->data.winptr,
-		game->textures.floor, x * 80, y * 80);
-	if (game->map[y][x] == 'E')
-	{
-		mlx_put_image_to_window(game->data.mlxptr, game->data.winptr,
-			game->textures.out_exit->content, x * 80, y * 80);
-	}
-	else if (game->map[y][x] == 'C')
-		mlx_put_image_to_window(game->data.mlxptr, game->data.winptr,
-			game->textures.coll->content, x * 80, y * 80);
-	else if (game->map[y][x] == 'e')
-		mlx_put_image_to_window(game->data.mlxptr, game->data.winptr,
-			game->textures.enemy->content, x * 80, y * 80);
-	else if (game->map[y][x] == '1')
-	{
-		if (x % 2 == 0 || y + 1 % 2 == 0)
-			mlx_put_image_to_window(game->data.mlxptr, game->data.winptr,
-				game->textures.frame2, x * 80, y * 80);
-		else
-			mlx_put_image_to_window(game->data.mlxptr,
-				game->data.winptr, game->textures.frame, x * 80, y * 80);
-	}
-}
-
-void	calcul(t_textures *texture, t_game *game)
-{
-	static int	i = 0;
-
-	if (!(texture->frames % 7))
-		texture->player = texture->player->next;
-	if (!(texture->frames % 17))
-		texture->coll = texture->coll->next;
-	if (!(texture->frames % 13))
-		texture->out_exit = texture->out_exit->next;
-	if (!(texture->frames % 5))
-	{
-		i++;
-		texture->enemy = texture->enemy->next;
-		game->patrol = i > 5;
-		if (i == 9)
-			i = 0;
-	}
-}
-
-int	rendering(t_game *game)
-{
-	int		x;
-	int		y;
-	char	*number;
-
-	calcul(&game->textures, game);
-	mlx_clear_window(game->data.mlxptr, game->data.winptr);
-	y = 0;
-	while (y < game->map_size.y)
-	{
-		x = 0;
-		while (x < game->map_size.x)
-		{
-			put_img(game, x, y);
-			x++;
-		}
-		y++;
-	}
-	void	*img;
-	img = game->textures.player->content;
-	mlx_put_image_to_window(game->data.mlxptr, game->data.winptr,
-		img, game->player.x * 80,game->player.y * 80);
-	mlx_string_put(game->data.mlxptr, game->data.winptr,
-		0, 0, 0xffffff, "MOVES->:");
-	number = ft_itoa(game->moves);
-	mlx_string_put(game->data.mlxptr, game->data.winptr,
-		80, 0, 0xffffff, number);
-	free(number);
-	game->textures.frames++;
-	return (0);
 }
 
 void	move(t_game *game, int x, int y)
@@ -142,12 +100,6 @@ void	move(t_game *game, int x, int y)
 	c = game->map[y][x];
 	if ((c == 'E' && game->colls != 0) || c == '1')
 		return ;
-	else if (game->patrol == false && c == 'e')
-	{
-		ft_printf("\033[42m\t>>>>>YOU LOST!<<<<<\033[0m\n", game->moves);
-		mlx_destroy_window(game->data.mlxptr, game->data.winptr);
-		exit (0);
-	}
 	game->moves += 1;
 	if (c == 'C')
 		game->colls--;
