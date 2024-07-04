@@ -6,7 +6,7 @@
 /*   By: ychagri <ychagri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 09:10:27 by ychagri           #+#    #+#             */
-/*   Updated: 2024/07/01 06:12:56 by ychagri          ###   ########.fr       */
+/*   Updated: 2024/07/04 12:40:36 by ychagri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,43 @@
 
 # include "../lib/Libft/libft.h"
 # include <mlx.h>
+# include <stdbool.h>
+# include <time.h>
 
 # define MOVES "textures/moves.xpm" 
 
-# define LEFT1 "textures/walk1.xpm" 
-# define LEFT2 "textures/walk2.xpm" 
-# define LEFT3 "textures/walk3.xpm" 
-# define LEFT4 "textures/walk4.xpm" 
+# define P1 "textures/1.xpm" 
+# define P2 "textures/2.xpm" 
+# define P3 "textures/3.xpm" 
+# define P4 "textures/4.xpm" 
+# define P5 "textures/5.xpm" 
+# define P6 "textures/6.xpm" 
+# define P7 "textures/7.xpm" 
+# define P8 "textures/8.xpm" 
+# define P9 "textures/9.xpm" 
+# define P10 "textures/10.xpm" 
+# define P11 "textures/11.xpm" 
+# define P12 "textures/12.xpm"
 
-# define RIGHT1 "textures/right1.xpm" 
-# define RIGHT2 "textures/right2.xpm" 
-# define RIGHT3 "textures/right3.xpm" 
-# define RIGHT4 "textures/right4.xpm" 
+# define C1 "textures/coll1.xpm" 
+# define C2 "textures/coll2.xpm"
+
+# define E1 "textures/e1.xpm"
+# define E2 "textures/e2.xpm"
+# define E3 "textures/e3.xpm"
+# define E4 "textures/e4.xpm"
+
+# define EN1 "textures/en1.xpm" 
+# define EN2 "textures/en2.xpm" 
+# define EN3 "textures/en3.xpm" 
+# define EN4 "textures/en4.xpm" 
+# define EN5 "textures/en5.xpm" 
+# define EN6 "textures/en6.xpm" 
+# define EN7 "textures/en7.xpm" 
+# define EN8 "textures/floor_b.xpm" 
+# define EN9 "textures/floor_b.xpm" 
+# define EN10 "textures/floor_b.xpm" 
+
 
 typedef struct s_coords
 {
@@ -67,11 +92,12 @@ typedef struct s_textures
 	void	*frame;
 	void	*frame2;
 
-	void	*coll;
-	void	*out_exit;
-	t_list	*l_player;
-	t_list	*r_player;
+	t_list	*coll;
+	t_list	*out_exit;
+	t_list	*player;
+	t_list	*enemy;
 	void	*cage;
+	unsigned int	frames;
 }	t_textures;
 
 typedef struct s_game
@@ -82,6 +108,7 @@ typedef struct s_game
 	t_data		data;
 	char		**map;
 	int			colls;
+	bool		patrol;
 	int			moves;
 }	t_game;
 
